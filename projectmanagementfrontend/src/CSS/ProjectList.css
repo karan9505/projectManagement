@@ -1,0 +1,164 @@
+.projectListHead{
+ background-color: rgb(235, 245, 255);
+ display: flex;
+ font-weight: 600;
+ position: absolute;
+ width: 100%;
+ height: 7%;
+ top:9%;
+ font-size: 14px;
+ align-items: center;
+}
+#projectH {
+ position: absolute;
+ left: 20px;
+}
+#projectR {
+ position: absolute;
+ left: 250px;
+}
+#projectT {
+ position: absolute;
+ left: 370px;
+}
+#projectD {
+ position: absolute;
+ left: 490px;
+}
+#projectC {
+ position: absolute;
+ left: 610px;
+}
+#projectP {
+ position: absolute;
+ left: 730px;
+}
+#projectDep {
+ position: absolute;
+ left: 850px;
+}
+#projectL {
+ position: absolute;
+ left: 970px;
+}
+#projectS {
+ position: absolute;
+ left: 1090px;
+}
+.projectListWrapper{
+ position: absolute;
+ width: 100%;
+ height: 84%;
+ top:16%;
+}
+.projectListElement{
+ display: flex;
+ width: 100%;
+ background-color: white;
+ border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+ height: 12%;
+ align-items: center;
+ font-size: 14px;
+ font-weight: 600;
+ color: rgba(0, 0, 0, 0.5);
+}
+.pleH {
+ position: absolute;
+ left: 20px;
+ color: rgba(0, 0, 0, 1);
+}
+.pleH>span{
+ color: rgba(0, 0, 0, 0.5);
+ font-size: 12px;
+}
+.pleR {
+ position: absolute;
+ left: 250px;
+}
+.pleT {
+ position: absolute;
+ left: 370px;
+}
+.pleD {
+ position: absolute;
+ left: 490px;
+}
+.pleC {
+ position: absolute;
+ left: 610px;
+}
+.pleP {
+ position: absolute;
+ left: 730px;
+}
+.pleDep {
+ position: absolute;
+ left: 850px;
+}
+.pleL {
+ position: absolute;
+ left: 970px;
+}
+.pleS {
+ position: absolute;
+ left: 1090px;
+ color: rgba(4, 78, 146, 1);
+}
+.startProjectButton,.closeProjectButton,.cancelProjectButton{
+ position: absolute;
+ border: none;
+ outline: none;
+ background-color: rgba(4, 78, 146, 1);
+ color: rgba(255, 255, 255, 0.7);
+ left: 1190px;
+ width: 65px;
+ font-size: 14px;
+ height: 25px;
+ border-radius: 20px;
+}
+.closeProjectButton{
+ color: rgba(4, 78, 146, 1);
+ border:1px solid rgba(4, 78, 146, 1);
+ background-color: white;
+ left: 1280px;
+}
+.cancelProjectButton{
+ color: rgba(4, 78, 146, 1);
+  border: 1px solid rgba(4, 78, 146, 1);
+  background-color: white;
+  left: 1370px;
+}
+.pageNumWrapper{
+  position: absolute;
+  height: 12%;
+  width: 100%;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pageElement{
+  font-size: 15px;
+  color: rgba(4, 78, 146, 1);
+  border:1px solid rgba(4, 78, 146, 1);
+  text-align: center;
+  padding: 5px 10px 5px 10px;
+  margin: 0px 5px 5px 10px;
+  border-radius: 3px;
+  background-color: white;
+  outline: none;
+}
+.pageElement:hover{
+  cursor: pointer;
+}
+.selectedPageElement {
+  font-size: 15px;
+  color: white;
+  border: none;
+  text-align: center;
+  padding: 5px 10px 5px 10px;
+  margin: 0px 5px 5px 10px;
+  border-radius: 3px;
+  background-color: rgba(4, 78, 146, 1);
+  outline: none;
+}

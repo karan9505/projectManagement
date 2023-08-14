@@ -1,0 +1,122 @@
+.landingDiv{
+ position: absolute;
+ top:0%;
+ left: 0%;
+ height: 100%;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: space-between;
+ background-image: url(../../public/IMAGES/login-bg-1.svg);
+ background-size: 100% 100%;
+ background-repeat: no-repeat;
+ background-position: 0px -90px;
+}
+.landingSubDiv1{
+ background-color: white;
+ width: 25%;
+ height: 55%;
+ border-radius: 10px;
+ box-shadow: 0px 0px 5px rgba(4, 78, 146, 0.5);
+ position: absolute;
+ top:200px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: space-around;
+}
+.langingLogo{
+ position: absolute;
+ height: 80px;
+ top:40px;
+}
+#langingHeading{
+ position: absolute;
+ top:125px;
+ color: rgba(255, 255, 255, 0.7);
+}
+.landingSubDiv1>div{
+ display: flex;
+ flex-direction: column;
+ width: 70%;
+}
+.inputLabel{
+ font-size: 15px;
+ color: rgba(0, 0, 0, 0.7);
+ margin-bottom: 3px;
+}
+.inputField{
+ padding: 10px;
+ font-size: 17px;
+ border-radius: 3px;
+ outline: none;
+ border: 1px solid rgba(0, 0, 0, 0.5);
+ color: rgba(0, 0, 0, 0.8);
+}
+#LoginHeading{
+ position: relative;
+ bottom: 5px;
+ font-size: 17px;
+}
+#loginEmailDiv {
+ position: relative;
+ bottom: 30px;
+}
+#loginPassDiv {
+ position: relative;
+ bottom: 50px;
+}
+#loginPassDiv>p{
+ color: rgba(4, 78, 146, 0.8);
+ font-size: 13px;
+ position: absolute;
+ top: 53px;
+ right: 0px;
+}
+.buttonInput{
+ width: 40%;
+ padding:5px 0px 5px 0px;
+ background-color: rgba(4, 78, 146,1);
+ color: rgba(255, 255, 255, 0.7);
+ border-radius: 20px;
+ border: none;
+ outline: none;
+ font-size: 14px;
+}
+#loginButton{
+ position: relative;
+ bottom: 40px;
+}
+#newToTechPrimeLab{
+ position: absolute;
+ bottom: 0px;
+ font-size: 13px;
+ color: rgba(4, 78, 146, 1);
+ 
+}
+#newToTechPrimeLab>span{
+ border-bottom: 1px solid rgba(4, 78, 146, 1);
+ position: relative;
+ left: 3px;
+}
+#newToTechPrimeLab>span:hover{
+ cursor: pointer;
+}
+#signupNameDiv{
+ position: relative;
+ bottom: 30px;
+}
+#signupEmailDiv{
+ position: relative;
+ bottom: 35px;
+}
+#signupPassDiv{
+ position: relative;
+ bottom:40px;
+}
+#negetiveResponse{
+ position: absolute;
+ bottom: 30px;
+ color: red;
+}

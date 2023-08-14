@@ -1,0 +1,62 @@
+.userWindow {
+ position: absolute;
+ height: 100%;
+ width: 97%;
+ top: 0%;
+ left: 3%;
+ background-color: rgba(240, 243, 246, 1);
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+.userWindowHeadImg {
+ position: absolute;
+ width: 100%;
+}
+
+.userDataSubWindow {
+ height: 84%;
+ width: 98%;
+ bottom: 0%;
+ background-color: white;
+ border-radius: 10px;
+ box-shadow: 0px 0px 20px rgba(4, 78, 146, 0.2);
+ z-index: 1;
+ position: absolute;
+ overflow: hidden;
+}
+.userWindowLogo{
+ z-index: 1;
+ position: absolute;
+ top:17px;
+}
+.userOptions{
+ position: absolute;
+ top:0%;
+ width: 3%;
+ height: 100%;
+}
+.optionInactive{
+ position: absolute;
+ width: 50%;
+ padding: 25%;
+ top:33%;
+}
+#listInactive{
+ top:42%;
+}
+#addInactive{
+ top:58%;
+}
+#divideOpt{
+ position: absolute;
+ left: 15%;
+ width: 70%;
+ top:53%;
+ background-color: rgba(0, 0, 0, 0.3);
+ height: 2px;
+}
+.optionInactive:hover{
+ cursor: pointer;
+}
