@@ -49,6 +49,9 @@ export default function CreateProject(props) {
         .then((response) => {
           console.log(response.data)
           if (response.data.success) {
+            dispatch(setTheme(''));
+            dispatch(setStartDate(''));
+            dispatch(setEndDate(''));
             props.setTabStatus('listingProjects');
           }
         })
@@ -169,6 +172,7 @@ export default function CreateProject(props) {
           <option>Quality</option>
           <option>Maintenance</option>
           <option>Stores</option>
+          <option>HR</option>
         </select>
       </div>
 

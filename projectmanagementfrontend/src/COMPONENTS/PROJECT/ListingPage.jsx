@@ -13,7 +13,7 @@ export default function ListingPage() {
 
   const userId = JSON.parse(localStorage.getItem('userId'));
 
-  const projectPerPage = 3;
+  const projectPerPage = 7;
   const pages = Math.ceil(projectList.length / projectPerPage);
   const [start, setStart] = useState(0);
   const end = start + projectPerPage;
@@ -31,7 +31,6 @@ export default function ListingPage() {
       projectId: e.target.parentElement.id
     })
       .then((response) => {
-        console.log(response.data)
         if (response.data.success)
           getProjectList();
       })
@@ -106,7 +105,18 @@ export default function ListingPage() {
                       <p className='pleT'>{data.type}</p>
                       <p className='pleD'>{data.division}</p>
                       <p className='pleC'>{data.category}</p>
-                      <p className='pleP'>{data.category}</p>
+                      <p className='pleP'>
+                      {
+                          data.priority === 1 ?
+                            <>High</> :
+                            <>
+                              {
+                                data.priority === 2 ?
+                                  <>Medium</> :
+                                  <>Low</>
+                              }
+                            </>
+                      }</p>
                       <p className='pleDep'>{data.department}</p>
                       <p className='pleL'>{data.location}</p>
                       <p className='pleS'>{data.status}</p>

@@ -6,16 +6,26 @@ import ListingPage from './ListingPage'
 export default function UserWindow() {
 
   const [tabStatus, setTabStatus] = useState('listingProjects');
+  const [dasboardView, setDashBoard] = useState(false);
 
   return (
     <>
       <div className='userOptions'>
-        <img src='../IMAGES/Dashboard.svg' id='dashInactive' className='optionInactive' alt='Not' onClick={(e) => { setTabStatus('Dashboard') }}></img>
-        <img src='../IMAGES/Project-list.svg' id='listInactive' className='optionInactive' alt='Not' onClick={(e) => { setTabStatus('listingProjects') }}></img>
+        <img src='../IMAGES/Dashboard.svg' id='dashInactive' className='optionInactive' alt='Not' onClick={(e) => {
+          setDashBoard(true);
+          setTabStatus('');
+        }}></img>
+        <img src='../IMAGES/Project-list.svg' id='listInactive' className='optionInactive' alt='Not' onClick={(e) => {
+          setDashBoard(false);
+          setTabStatus('listingProjects')
+        }}></img>
         <div id='divideOpt'></div>
-        <img src='../IMAGES/create-project.svg' id='addInactive' className='optionInactive' alt='Not' onClick={(e) => { setTabStatus('createProject') }}></img>
+        <img src='../IMAGES/create-project.svg' id='addInactive' className='optionInactive' alt='Not' onClick={(e) => {
+          setDashBoard(false);
+          setTabStatus('createProject')
+        }}></img>
         {
-          tabStatus === 'Dashboard' ?
+          dasboardView ?
             <img src='../IMAGES/Dashboard-active.svg' id='dashInactive' className='optionInactive' alt='Not'></img> :
             <></>
         }
@@ -33,23 +43,23 @@ export default function UserWindow() {
       <div className='userWindow'>
         <img src='../IMAGES/Header-bg.svg' alt='Not' className='userWindowHeadImg'></img>
         <img src='../IMAGES/Logo.svg' alt='Not' className='userWindowLogo'></img>
-        <div className='userDataSubWindow'>
-          {
-            tabStatus === 'createProject' ?
-              <CreateProject setTabStatus={setTabStatus} /> :
-              <></>
-          }
-          {
-            tabStatus === 'Dashboard' ?
-              <Dashboard /> :
-              <></>
-          }
-          {
-            tabStatus === 'listingProjects' ?
-              <ListingPage /> :
-              <></>
-          }
-        </div>
+        {
+          dasboardView ?
+            <Dashboard /> :
+            <div className='userDataSubWindow'>
+              {
+                tabStatus === 'createProject' ?
+                  <CreateProject setTabStatus={setTabStatus} /> :
+                  <></>
+              }
+              {
+                tabStatus === 'listingProjects' ?
+                  <ListingPage /> :
+                  <></>
+              }
+            </div>
+            
+        }
       </div>
     </>
   )
