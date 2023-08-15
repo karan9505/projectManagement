@@ -3,6 +3,7 @@ import { setUserEmail, setUserPass, setUserName } from '../../REDUX/credentialSl
 import { useDispatch, useSelector } from 'react-redux'
 import $ from 'jquery'
 import axios from 'axios'
+import { useState } from 'react'
 export default function Signup(props) {
 
   const signupApi = 'http://localhost:8000/Credential/Signup';
@@ -19,6 +20,10 @@ export default function Signup(props) {
     return state.credentials.userName
   })
 
+  const [nameRequired, setNameReq] = useState('');
+  const [emailRequired, setEmailReq] = useState('');
+  const [passRequired, setPassReq] = useState('');
+
   const signupUser = () => {
     if (userName === '') {
       $('#signupNameLabel').css({
@@ -27,6 +32,7 @@ export default function Signup(props) {
       $('#signupNameValue').css({
         'border': '1px solid red'
       })
+      setNameReq('Name required')
     }
     if (userEmail === '') {
       $('#signupEmailLabel').css({
@@ -35,6 +41,7 @@ export default function Signup(props) {
       $('#signupEmailValue').css({
         'border': '1px solid red'
       })
+      setEmailReq('Email required')
     }
     if (userPassword === '') {
       $('#signupPassLabel').css({
@@ -43,6 +50,7 @@ export default function Signup(props) {
       $('#signupPassValue').css({
         'border': '1px solid red'
       })
+      setPassReq('Password required')
     }
     if (userName !== '' && userEmail !== '' && userPassword !== '') {
       axios.post(signupApi, {
@@ -65,6 +73,9 @@ export default function Signup(props) {
 
   const resetBlank = () => {
     props.setNegetiveResponse('');
+    setNameReq('');
+    setPassReq('');
+    setEmailReq('');
     if (userName === '') {
       $('#signupNameLabel').css({
         'color': 'rgba(0, 0, 0, 0.8)'
@@ -102,25 +113,28 @@ export default function Signup(props) {
 
   return (
     <>
-      <p id='LoginHeading'>Fill Sign-up form</p>
+      <p id='signupHeading'>Fill Sign-up form</p>
 
       <div id='signupNameDiv'>
         <label htmlFor='signupNameValue' className='inputLabel' id='signupNameLabel'>Name</label>
-        <input type='text' placeholder='Name...' className='inputField' value={userName} onChange={(e) => { dispatch(setUserName(e.target.value)) }} id='signupNameValue' onClick={(e) => { resetBlank (e)}}></input>
+        <input type='text' placeholder='Name...' className='inputField' value={userName} onChange={(e) => { dispatch(setUserName(e.target.value)) }} id='signupNameValue' onClick={(e) => { resetBlank(e) }}></input>
+        <p className='loginFalse'>{nameRequired}</p>
       </div>
 
       <div id='signupEmailDiv'>
         <label htmlFor='signupEmailValue' className='inputLabel' id='signupEmailLabel'>Email</label>
         <input type='text' placeholder='Email...' className='inputField' value={userEmail} onChange={(e) => { dispatch(setUserEmail(e.target.value)) }} id='signupEmailValue' onClick={(e) => { resetBlank(e) }}></input>
+        <p className='loginFalse'>{emailRequired}</p>
       </div>
 
       <div id='signupPassDiv'>
         <label htmlFor='signupPassValue' className='inputLabel' id='signupPassLabel'>Password</label>
         <input type='text' placeholder='Password...' className='inputField' onChange={(e) => { dispatch(setUserPass(e.target.value)) }} value={userPassword} id='signupPassValue' onClick={(e) => { resetBlank(e) }}></input>
+        <p className='loginFalse'>{passRequired}</p>
       </div>
 
-      <input type='button' value={'Signup'} className='buttonInput' id='loginButton' onClick={(e)=>{signupUser(e)}}></input>
-      <p id='newToTechPrimeLab'>Already have account?<span onClick={(e) => { toLogin(e) }}>Login</span></p>
+      <input type='button' value={'Signup'} className='buttonInput' id='signupButton' onClick={(e)=>{signupUser(e)}}></input>
+      <p id='newToTechPrimeLab1'>Already have account?<span onClick={(e) => { toLogin(e) }}>Login</span></p>
     </>
   )
 }

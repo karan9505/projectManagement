@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {setUserEmail,setUserPass,setUserName} from '../../REDUX/credentialSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import $ from 'jquery'
@@ -20,7 +20,12 @@ export default function Login(props) {
 
   const dispatch = useDispatch();
 
-  const loginUser = () => {
+  const [emailRequired, setEmailReq] = useState('');
+  const [passRequired, setPassReq] = useState('');
+
+
+  const loginUser = (e) => {
+    e.preventDefault();
     if (userEmail === '') {
       $('#loginEmailLabel').css({
         'color': 'red'
@@ -28,6 +33,7 @@ export default function Login(props) {
       $('#loginEmailValue').css({
         'border': '1px solid red'
       })
+      setEmailReq('Email required')
     }
     if (userPassword === '') {
       $('#loginPassLabel').css({
@@ -36,6 +42,7 @@ export default function Login(props) {
       $('#loginPassValue').css({
         'border': '1px solid red'
       })
+      setPassReq('Password required')
     }
 
     if (userEmail !== '' && userPassword !== '') {
@@ -44,7 +51,7 @@ export default function Login(props) {
         password:userPassword
       })
         .then((response) => {
-          console.log(response.data)
+          // console.log(response.data)
           if (response.data.success) {
             localStorage.setItem('userName', JSON.stringify(response.data.userData[0].name));
             localStorage.setItem('userId', JSON.stringify(response.data.userData[0]._id));
@@ -87,6 +94,8 @@ export default function Login(props) {
       })
     }
     props.setNegetiveResponse('');
+    setEmailReq('');
+    setPassReq('');
   }
 
   return (
@@ -94,12 +103,14 @@ export default function Login(props) {
       <p id='LoginHeading'>Login to get started</p>
       <div id='loginEmailDiv'>
         <label htmlFor='loginEmailValue' className='inputLabel' id='loginEmailLabel'>Email</label>
-        <input type='text' placeholder='Email...' className='inputField' value={userEmail} onChange={(e) => { dispatch(setUserEmail(e.target.value)) }} id='loginEmailValue' onClick={(e)=>{resetBlank(e)}}></input>
+        <input type='text' placeholder='Email...' className='inputField' value={userEmail} onChange={(e) => { dispatch(setUserEmail(e.target.value)) }} id='loginEmailValue' onClick={(e) => { resetBlank(e) }}></input>
+        <p className='loginFalse'>{emailRequired}</p>
       </div>
       <div id='loginPassDiv'>
         <label htmlFor='loginPassword' className='inputLabel' id='loginPassLabel'>Password</label>
-        <input type='text' placeholder='Password...' className='inputField' onChange={(e) => { dispatch(setUserPass(e.target.value)) }} value={userPassword} id='loginPassValue' onClick={(e)=>{resetBlank(e)}}></input>
-        <p>Forgot Password?</p>
+        <input type='text' placeholder='Password...' className='inputField' onChange={(e) => { dispatch(setUserPass(e.target.value)) }} value={userPassword} id='loginPassValue' onClick={(e) => { resetBlank(e) }}></input>
+        <p className='loginFalse'>{passRequired}</p>
+        <p id='forgotPassText'>Forgot Password?</p>
       </div>
       <input type='button' value={'Login'} className='buttonInput' id='loginButton' onClick={(e)=>{loginUser(e)}}></input>
       <p id='newToTechPrimeLab'>New to TechPrimeLab?<span onClick={(e) => { toSignup (e)}}>Signup First</span></p>

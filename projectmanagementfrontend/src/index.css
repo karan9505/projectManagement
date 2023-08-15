@@ -23,10 +23,3 @@ textarea,input[type=date]{
   position: relative;
   right: 15px;
 }
-select{
-  appearance: none;
-  background-image: url(../public/IMAGES/dropDown.png);
-  background-repeat: no-repeat;
-  background-size: 5%;
-  background-position: 315px 16px;
-}

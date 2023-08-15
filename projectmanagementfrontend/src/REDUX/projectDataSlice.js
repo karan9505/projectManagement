@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
  theme: '',
- reason:'For Business',
+ reason:'Business',
  type: 'Internal',
  division: 'Compressor',
  category: 'Quality A',
@@ -51,9 +51,12 @@ const projectSlice = createSlice({
   },
   setUserId: (state, action) => {
    state.userId = action.payload;
+  },
+  resetProject: () => {
+   return initialState;
   }
  }
 })
 
 export default projectSlice.reducer;
-export const { setTheme, setReason, setType, setDivision, setCategory, setPriority, setDepartment, setStartDate, setEndDate, setLocation, setUserId } = projectSlice.actions;
+export const { setTheme, setReason, setType, setDivision, setCategory, setPriority, setDepartment, setStartDate, setEndDate, setLocation, setUserId, resetProject } = projectSlice.actions;

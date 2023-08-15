@@ -1,4 +1,5 @@
-.userWindow {
+@media(min-width:1400px) {
+ .userWindow {
  position: absolute;
  height: 100%;
  width: 97%;
@@ -9,7 +10,22 @@
  flex-direction: column;
  align-items: center;
 }
-
+.dashboardHeading,.dashboardHeading1{
+  display: block;
+  font-size: 20px;
+  z-index: 2;
+  left: 40px;
+  position: absolute;
+  top:40px;
+  color: white;
+}
+.dashboardHeading1{
+  top:-75px;
+  left: 25px;
+}
+#logoutIconPhone{
+  display: none;
+}
 .userWindowHeadImg {
  position: absolute;
  width: 100%;
@@ -24,7 +40,6 @@
  box-shadow: 0px 0px 20px rgba(4, 78, 146, 0.2);
  z-index: 1;
  position: absolute;
- overflow: hidden;
 }
 .userWindowLogo{
  z-index: 1;
@@ -63,4 +78,65 @@
 #logoutIcon{
  position: absolute;
  top: 650px;
+}
+}
+@media(max-width:1000px) {
+ .userWindow {
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   top: 0%;
+   background-color: rgba(240, 243, 246, 1);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   overflow-x: hidden;
+  }
+ .userWindowHeadImg{
+  position: absolute;
+  height: 90px;
+  left: 0px;
+ }
+ .userOptions{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  background-color: white;
+  height: 9%;
+  bottom: 0%;
+  border-top-left-radius: 200px;
+  border-top-right-radius: 200px;
+ }
+ #divideOpt{
+  display: none;
+ }
+ .optionInactive{
+  position: absolute;
+  height: 50%;
+  top:25%;
+ }
+ #dashInactive{
+  left:60px;
+ }
+ #listInactive{
+  left:160px;
+ }
+ #addInactive{
+  left: 260px;
+ }
+ #logoutIcon{
+  display: none;
+}
+ #logoutIconPhone{
+  display: block;
+  position: absolute;
+  top:25px;
+  right: 10px;
+  height: 30px;
+  z-index: 2;
+ }
+ .dashboardHeading1{
+  display: none;
+ }
 }

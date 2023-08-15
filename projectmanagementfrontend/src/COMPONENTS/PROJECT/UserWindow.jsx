@@ -61,6 +61,7 @@ export default function UserWindow() {
         }
       </div>
       <div className='userWindow'>
+        <img src='../IMAGES/Logout.svg' id='logoutIconPhone' className='optionInactive' alt='Not' onClick={(e) => { logoutUser(e) }}></img>
         <img src='../IMAGES/Header-bg.svg' alt='Not' className='userWindowHeadImg'></img>
         <img src='../IMAGES/Logo.svg' alt='Not' className='userWindowLogo'></img>
         {

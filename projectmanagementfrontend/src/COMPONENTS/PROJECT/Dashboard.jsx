@@ -30,31 +30,32 @@ export default function Dashboard() {
   },[])
   return (
     <>
+      <p className="dashboardHeading">Dashboard</p>
       {
         Object.keys(dashBoardData).length > 0 ?
           <>
             <div className='dashDataWrap'>
-              <div className='dashDataEle'>
+              <div className='dashDataEle' id='dde1'>
                 <p className='dashValue'>Total Projects<br></br>
                   <CountUp start={0} end={dashBoardData.totalProjects} duration={1}></CountUp>
                 </p>
               </div>
-              <div className='dashDataEle'>
+              <div className='dashDataEle' id='dde2'>
                 <p className='dashValue'>Closed<br></br>
                   <CountUp start={0} end={dashBoardData.closedProjects} duration={1}></CountUp>
                 </p>
               </div>
-              <div className='dashDataEle'>
+              <div className='dashDataEle' id='dde3'>
                 <p className='dashValue'>Running<br></br>
                   <CountUp start={0} end={dashBoardData.runningProjects} duration={1}></CountUp>
                 </p>
               </div>
-              <div className='dashDataEle'>
+              <div className='dashDataEle' id='dde4'>
                 <p className='dashValue'>Closure Delay<br></br>
                   <CountUp start={0} end={dashBoardData.closureDay} duration={1}></CountUp>
                 </p>
               </div>
-              <div className='dashDataEle'>
+              <div className='dashDataEle' id='dde5'>
                 <p className='dashValue'>Cancelled<br></br>
                   <CountUp start={0} end={dashBoardData.cancelledProjects} duration={1}></CountUp>
                 </p>

@@ -7,6 +7,10 @@ export default function ListingPage() {
 
   const getAllProjectsApi = 'http://localhost:8000/Project/Allprojects';
   
+  const searchProjectsApi = 'http://localhost:8000/Project/Search';
+  
+  const sortedProjectsApi = 'http://localhost:8000/Project/GetSorted';
+  
   const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   const [projectList, setProjectList] = useState([]);
@@ -72,8 +76,52 @@ export default function ListingPage() {
     setStart((Number(e.target.id) - 1) * projectPerPage)
   }
 
+  const getSearchedProjects = (e) => {
+    if (e.target.value.length < 51) {
+      axios.post(searchProjectsApi, {
+        userId: userId,
+        key: e.target.value
+      })
+        .then((response) => {
+          if(response.data.success)
+            setProjectList(response.data.searchedProjects.reverse())
+        })
+        .catch((error) => {
+          console.log(error.message)
+        })
+    }
+  }
+
+  const setSortedData = (e) => {
+    axios.post(sortedProjectsApi, {
+      userId: userId,
+      property: e.target.value
+    })
+      .then((response) => {
+        setProjectList(response.data.sortedProjects)
+      })
+      .catch((error) => {
+        console.log(error.message)
+      })
+  }
+
   return (
     <>
+      <p className="dashboardHeading">Project Listing</p>
+      <p className="dashboardHeading1">Project Listing</p>
+      <img src='../IMAGES/Search.png'id='searchImage'></img>
+      <input type='text' id='searchText' placeholder='Search' spellCheck='false' onChange={(e)=>{getSearchedProjects(e)}}></input>
+      <div id='sortingDiv'>
+        <label htmlFor='sortingOption'>Sort by : </label>
+        <select id='sortingOption' onClick={(e) => { setSortedData(e)}}>
+          <option value={'priority'}>Priority</option>
+          <option value={'category'}>Category</option>
+          <option value={'reason'}>Reason</option>
+          <option value={'division'}>Division</option>
+          <option value={'department'}>Department</option>
+          <option value={'location'}>Location</option>
+        </select>
+      </div>
       <div className='projectListHead'>
         <p id='projectH'>Project Name</p>
         <p id='projectR'>Reason</p>
@@ -97,7 +145,7 @@ export default function ListingPage() {
                         <span>
                           {
                             
-                            month[Number(String(data.startDate).slice(5, 7))] + '-' + String(data.startDate).slice(8, 10) + ', ' + String(data.startDate).slice(0, 4) + ' to ' + month[Number(String(data.endDate).slice(5, 7))] + '-' + String(data.endDate).slice(8, 10) + ', ' + String(data.endDate).slice(0, 4)
+                            month[Number(String(data.startDate).slice(5, 7))-1] + '-' + String(data.startDate).slice(8, 10) + ', ' + String(data.startDate).slice(0, 4) + ' to ' + month[Number(String(data.endDate).slice(5, 7))-1] + '-' + String(data.endDate).slice(8, 10) + ', ' + String(data.endDate).slice(0, 4)
                           }
                         </span>
                       </p>
@@ -130,6 +178,52 @@ export default function ListingPage() {
             </> :
             <></>
       }
+      </div>
+      <div className='projectListWrapper1'>
+        {
+          projectList.length > 0 ?
+            <>
+              {
+                projectList.map((data, index) => {
+                  return (
+                    <div key={index} id={data._id} className='projectListElement'>
+                      <p className='pleH'>{data.theme}<br></br>
+                        <span>
+                          {
+
+                            month[Number(String(data.startDate).slice(5, 7)) - 1] + '-' + String(data.startDate).slice(8, 10) + ', ' + String(data.startDate).slice(0, 4) + ' to ' + month[Number(String(data.endDate).slice(5, 7)) - 1] + '-' + String(data.endDate).slice(8, 10) + ', ' + String(data.endDate).slice(0, 4)
+                          }
+                        </span>
+                      </p>
+                      <p className='pleR'>{'Reason : '+data.reason}</p>
+                      <p className='pleT'>{'Type : ' +data.type}</p>
+                      <p className='pleD'>{'Div. : ' +data.division}</p>
+                      <p className='pleC'>{'Category : ' +data.category}</p>
+                      <p className='pleP'>
+                        {
+                          data.priority === 1 ?
+                            <>{'Priority : High'}</> :
+                            <>
+                              {
+                                data.priority === 2 ?
+                                  <>{'Priority : Medium'}</> :
+                                  <>{'Priority : Low'}</>
+                              }
+                            </>
+                        }</p>
+                      <p className='pleDep'>{'Dept. : '+data.department}</p>
+                      <p className='pleL'>{'Location : ' +data.location}</p>
+                      <p className='pleS'>{data.status}</p>
+                      <input type='button' value={'Start'} className='startProjectButton' onClick={(e) => { updateStatus(e) }}></input>
+                      <input type='button' value={'Close'} className='closeProjectButton' onClick={(e) => { updateStatus(e) }}></input>
+                      <input type='button' value={'Cancel'} className='cancelProjectButton' onClick={(e) => { updateStatus(e) }}></input>
+                    </div>
+                  )
+                })
+              }
+            </> :
+            <></>
+        }
       </div>
       <div className='pageNumWrapper'>
         {

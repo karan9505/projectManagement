@@ -10,6 +10,7 @@ export default function Landing() {
   return (
     <div className='landingDiv'>
       <img src='../IMAGES/Logo.svg' alt='Not' className='langingLogo'></img>
+      <img src='../IMAGES/Oval.svg' alt='Not' className='ovalLogo'></img>
       <p id='langingHeading'>Online Project Management</p>
       <div className='landingSubDiv1'>
       {

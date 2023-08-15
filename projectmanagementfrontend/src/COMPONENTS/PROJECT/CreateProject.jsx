@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../../CSS/CreateProject.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { setTheme, setReason, setType, setDivision, setCategory, setPriority, setDepartment, setStartDate, setEndDate, setLocation, setUserId } from '../../REDUX/projectDataSlice'
+import { setTheme, setReason, setType, setDivision, setCategory, setPriority, setDepartment, setStartDate, setEndDate, setLocation, setUserId, resetProject } from '../../REDUX/projectDataSlice'
 import $ from 'jquery'
 import axios from 'axios'
 export default function CreateProject(props) {
@@ -49,9 +49,7 @@ export default function CreateProject(props) {
         .then((response) => {
           console.log(response.data)
           if (response.data.success) {
-            dispatch(setTheme(''));
-            dispatch(setStartDate(''));
-            dispatch(setEndDate(''));
+            dispatch(resetProject());
             props.setTabStatus('listingProjects');
           }
         })
@@ -107,6 +105,8 @@ export default function CreateProject(props) {
 
   return (
     <>
+      <p className="dashboardHeading">Create Project</p>
+      <p className="dashboardHeading1">Create Project</p>
       <textarea className='projectThemeInput' placeholder='Enter Project Theme...(Max. 50 characters)' onChange={(e) => {
         if(e.target.value.length<51)
           dispatch(setTheme(e.target.value))
@@ -119,9 +119,9 @@ export default function CreateProject(props) {
       <div id='projectReasonDiv' className='inputDiv'>
         <label htmlFor='projectReason' className='inputLabel'>Reason</label>
         <select className='projectInput' onClick={(e) => { dispatch(setReason(e.target.value)) }} id='projectReason'>
-          <option>For Business</option>
-          <option>For Dealership</option>
-          <option>For Transport</option>
+          <option value={'Business'}>For Business</option>
+          <option value={'Dealership'}>For Dealership</option>
+          <option value={'Transport'}>For Transport</option>
         </select>
       </div>
 
@@ -178,19 +178,19 @@ export default function CreateProject(props) {
 
       <div id='projectStartDateDiv' className='inputDiv'>
         <label htmlFor='projectStartDate' className='inputLabel'>Start Date as per Project Plan</label>
-        <input type='date' className='projectInput' id='projectStartDate' onChange={(e) => { checkDate(e) }} onClick={(e) => { resetErrors (e)}}></input>
+        <input type='date' className='projectInputDate' id='projectStartDate' onChange={(e) => { checkDate(e) }} onClick={(e) => { resetErrors (e)}}></input>
         <p className='falseDate'>{startDateFalse}</p>
       </div>
 
       <div id='projectEndDateDiv' className='inputDiv'>
         <label htmlFor='projectEndDate' className='inputLabel'>End Date as per Project Plan</label>
-        <input type='date' className='projectInput' id='projectEndDate' onChange={(e) => { checkDate(e) }} onClick={(e) => { resetErrors(e) }}></input>
+        <input type='date' className='projectInputDate' id='projectEndDate' onChange={(e) => { checkDate(e) }} onClick={(e) => { resetErrors(e) }}></input>
         <p className='falseDate'>{endDateFalse}</p>
       </div>
 
       <div id='projectLocationDiv' className='inputDiv'>
-        <label htmlFor='projectLocation' className='inputLabel' id='projectLocation' onClick={(e) => { dispatch(setLocation(e.target.value)) }}>Location</label>
-        <select className='projectInput'>
+        <label htmlFor='projectLocation' className='inputLabel' id='projectLocation'>Location</label>
+        <select className='projectInput' onClick={(e) => { dispatch(setLocation(e.target.value)) }}>
           <option>Pune</option>
           <option>Delhi</option>
           <option>Mumbai</option>
@@ -198,6 +198,7 @@ export default function CreateProject(props) {
       </div>
 
       <p id='projectStatus'>Status : <span>Registered</span></p>
+      <div className='dummy'></div>
     </>
   )
 }
