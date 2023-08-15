@@ -1,5 +1,36 @@
 const credentials = require('../MODELS/credentials.js')
 
+//New user signup api
+const SignUp = async (req, res) => {
+ try {
+  console.log('--------------SIGNUP API ACCESSED--------------');
+  const existingUser = await credentials.find({ email: req.body.email }).count();
+  if (existingUser) {
+   res.send({
+    success: false,
+    message: 'Existing user'
+   })
+   res.end();
+   return;
+  } else {
+   const newUser = new credentials(req.body);
+   await newUser.save();
+   res.send({
+    success: true,
+    message: 'Signup successful',
+   })
+   res.end();
+  }
+ } catch (error) {
+  console.log(error)
+  res.send({
+   success: false,
+   message: 'Server Error'
+  })
+  res.end();
+ }
+}
+
 
 //User login api
 const Login = async (req, res) => {
@@ -8,6 +39,8 @@ const Login = async (req, res) => {
   const existingUser = await credentials.find({ email: req.body.email });
   if (existingUser.length) {
    if (existingUser[0].password === req.body.password) {
+    const a = await credentials.updateOne({ email: req.body.email }, { loginStatus: 1 })
+    console.log(a)
     res.send({
      success: true,
      message: `Login successful`,
@@ -38,27 +71,19 @@ const Login = async (req, res) => {
  }
 }
 
+//Logout user
 
-//New user signup api
-const SignUp = async (req, res) => {
+const Logout = async (req, res) => {
+ console.log('--------------LOGOUT API ACCESSED--------------');
  try {
- console.log('--------------SIGNUP API ACCESSED--------------');
- const existingUser = await credentials.find({ email: req.body.email }).count();
- if (existingUser) {
-  res.send({
-   success: false,
-   message: 'Existing user'
-  })
-  res.end();
-  return;
- } else {
-  const newUser = new credentials(req.body);
-  await newUser.save();
-  res.send({
-   success: true,
-   message: 'Signup successful',
-  })
-  res.end();
+  console.log(req.body.userId)
+  const dbResponse = await credentials.updateOne({ _id: req.body.userId }, { loginStatus: 0 })
+  if (dbResponse.modifiedCount) {
+   res.send({
+    success: true,
+    message:'User logged out'
+   })
+   res.end();
   }
  } catch (error) {
   console.log(error)
@@ -70,7 +95,9 @@ const SignUp = async (req, res) => {
  }
 }
 
+
 module.exports = {
+ SignUp: SignUp,
  Login: Login,
- SignUp: SignUp
+ Logout: Logout
 }

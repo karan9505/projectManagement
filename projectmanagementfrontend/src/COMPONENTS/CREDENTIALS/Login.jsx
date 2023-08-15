@@ -1,5 +1,5 @@
 import React from 'react'
-import {setUserEmail,setUserPass} from '../../REDUX/credentialSlice'
+import {setUserEmail,setUserPass,setUserName} from '../../REDUX/credentialSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import $ from 'jquery'
 import axios from 'axios'
@@ -49,6 +49,8 @@ export default function Login(props) {
             localStorage.setItem('userName', JSON.stringify(response.data.userData[0].name));
             localStorage.setItem('userId', JSON.stringify(response.data.userData[0]._id));
             dispatch(setUserPass(''));
+            dispatch(setUserName(''));
+            dispatch(setUserEmail(''));
             Navigate('/Userprojects');
           } else {
             props.setNegetiveResponse(response.data.message)

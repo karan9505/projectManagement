@@ -52,7 +52,7 @@ export default function Signup(props) {
       })
         .then((response) => {
           console.log(response.data)
-          if (response.data.success) 
+          if (response.data.success)
             toLogin();
           else 
             props.setNegetiveResponse(response.data.message)

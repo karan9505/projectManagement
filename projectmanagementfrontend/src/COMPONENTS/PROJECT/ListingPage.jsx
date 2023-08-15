@@ -46,7 +46,7 @@ export default function ListingPage() {
     })
       .then((response) => {
         if (response.data.success)
-          setProjectList(response.data.projectList)
+          setProjectList(response.data.projectList.reverse())
       })
       .catch((error) => {
       console.log(error.message)

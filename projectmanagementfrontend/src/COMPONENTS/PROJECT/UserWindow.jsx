@@ -3,10 +3,29 @@ import '../../CSS/Userwindow.css'
 import CreateProject from './CreateProject'
 import Dashboard from './Dashboard'
 import ListingPage from './ListingPage'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 export default function UserWindow() {
 
   const [tabStatus, setTabStatus] = useState('listingProjects');
   const [dasboardView, setDashBoard] = useState(false);
+  const logoutApi = 'http://localhost:8000/Credential/Logout/';
+  const Navigate = useNavigate();
+  const logoutUser = (e) => {
+    e.preventDefault();
+    axios.post(logoutApi, {
+      userId:JSON.parse(localStorage.getItem('userId'))
+    })
+      .then((response) => {
+        if (response.data.success) {
+          localStorage.clear();
+          Navigate('/');
+      }
+      })
+      .catch((error) => {
+      console.log(error.message)
+    })
+  }
 
   return (
     <>
@@ -24,6 +43,7 @@ export default function UserWindow() {
           setDashBoard(false);
           setTabStatus('createProject')
         }}></img>
+        <img src='../IMAGES/Logout.svg' id='logoutIcon' className='optionInactive' alt='Not' onClick={(e)=>{logoutUser(e)}}></img>
         {
           dasboardView ?
             <img src='../IMAGES/Dashboard-active.svg' id='dashInactive' className='optionInactive' alt='Not'></img> :
