@@ -9,7 +9,7 @@ export default function UserWindow() {
 
   const [tabStatus, setTabStatus] = useState('');
   const [dasboardView, setDashBoard] = useState(true);
-  const logoutApi = 'https://my-project-management.onrender.com/Credential/Logout';
+  const logoutApi = 'http://localhost:8000/Credential/Logout';
   const Navigate = useNavigate();
   const logoutUser = (e) => {
     e.preventDefault();

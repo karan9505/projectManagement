@@ -7,7 +7,7 @@ import axios from 'axios'
 export default function CreateProject(props) {
 
   
-  const newProjetApi ='https://my-project-management.onrender.com/Project/Newproject'
+  const newProjetApi ='http://localhost:8000/Project/Newproject'
   const [startDateFalse, setStartDateFalse] = useState('');
   const [endDateFalse, setEndDateFalse] = useState('');
   const [themeFalse, setThemeFalse] = useState('');

@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useState } from 'react'
 export default function Signup(props) {
 
-  const signupApi = 'https://my-project-management.onrender.com/Credential/Signup';
+  const signupApi = 'http://localhost:8000/Credential/Signup';
   const dispatch = useDispatch();
   const userEmail = useSelector((state) => {
     return state.credentials.userEmail
