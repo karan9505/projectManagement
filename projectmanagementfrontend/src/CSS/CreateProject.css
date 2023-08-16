@@ -1,4 +1,4 @@
-@media(min-width:1400px) {
+@media(min-width:1300px) {
   .projectThemeInput {
     position: absolute;
     /* height: 50px; */
@@ -213,13 +213,14 @@
     top: 1170px;
     left: 7%;
     height: 35px;
+    margin-bottom: 3000px;
   }
 
   .dummy {
     height: 10px;
     width: 10px;
     position: absolute;
-    top: 1300px;
+    top: 1400px;
   }
 
   #projectStatus {

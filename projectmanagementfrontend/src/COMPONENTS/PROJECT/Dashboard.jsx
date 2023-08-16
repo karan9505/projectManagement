@@ -76,6 +76,20 @@ export default function Dashboard() {
                 </Bar>
               </BarChart>
             </div>
+            <div className='chartWrapper1'>
+              <BarChart width={300} height={340} data={dashBoardData.chartData}>
+                <XAxis dataKey={"name"} height={60} />
+                <YAxis width={30} />
+                <Tooltip />
+                <Legend height={70} />
+                <Bar dataKey="Total" fill="rgba(4, 78, 146,1)" legendType='circle' barSize={10}>
+                  <LabelList dataKey="Total" position="top" />
+                </Bar>
+                <Bar dataKey="Closed" fill="rgb(89, 166, 66)" legendType='circle' barSize={10} >
+                  <LabelList dataKey="Closed" position="top" />
+                </Bar>
+              </BarChart>
+            </div>
           </> :
           <></>
       }

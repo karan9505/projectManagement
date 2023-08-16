@@ -1,4 +1,4 @@
-@media(min-width:1400px) {
+@media(min-width:1300px) {
  .dashDataWrap {
   position: absolute;
   height: 14%;
@@ -39,6 +39,9 @@
   padding-right: 30px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+ }
+ .chartWrapper1{
+  display: none;
  }
 
  #chartHeading {
@@ -113,18 +116,18 @@
   font-weight: 400;
   font-size: 21px;
  }
+ .chartWrapper{
+  display: none;
+ }
 
- .chartWrapper {
+ .chartWrapper1 {
   position: absolute;
   background-color: white;
-  left: 13px;
   top: 295px;
   padding-top: 60px;
-  padding-right: 30px;
-  border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
-  width: 300px;
+  width: 96%;
+  left: 2%;
  }
   .dashboardHeading {
    position: absolute;

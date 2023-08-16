@@ -1,4 +1,4 @@
-@media(min-width:1400px) {
+@media(min-width:1300px) {
   .projectListHead {
     background-color: rgb(235, 245, 255);
     display: flex;
@@ -9,6 +9,9 @@
     top: 9%;
     font-size: 14px;
     align-items: center;
+  }
+  .dashboardHeading{
+    display: none;
   }
 
   #projectH {
