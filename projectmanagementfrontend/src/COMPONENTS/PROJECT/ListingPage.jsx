@@ -3,13 +3,13 @@ import '../../CSS/ProjectList.css'
 import axios from 'axios'
 export default function ListingPage() {
 
-  const updateProjectStatusApi = 'http://localhost:8000/Project/UpdateProject';
+  const updateProjectStatusApi = 'https://my-project-management.onrender.com/Project/UpdateProject';
 
-  const getAllProjectsApi = 'http://localhost:8000/Project/Allprojects';
+  const getAllProjectsApi = 'https://my-project-management.onrender.com/Project/Allprojects';
   
-  const searchProjectsApi = 'http://localhost:8000/Project/Search';
+  const searchProjectsApi = 'https://my-project-management.onrender.com/Project/Search';
   
-  const sortedProjectsApi = 'http://localhost:8000/Project/GetSorted';
+  const sortedProjectsApi = 'https://my-project-management.onrender.com/Project/GetSorted';
   
   const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 

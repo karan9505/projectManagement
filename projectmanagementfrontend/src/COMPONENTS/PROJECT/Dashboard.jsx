@@ -9,9 +9,9 @@ export default function Dashboard() {
 
   const [dashChartData, setDashChartData] = useState([]);
 
-  const dashboardCounterApi = 'http://localhost:8000/Project/DashboardCounter';
+  const dashboardCounterApi = 'https://my-project-management.onrender.com/Project/DashboardCounter';
 
-  const dashboardChartApi = 'http://localhost:8000/Project/DashboardChart';
+  const dashboardChartApi = 'https://my-project-management.onrender.com/Project/DashboardChart';
   const userId = JSON.parse(localStorage.getItem('userId'));
   
   const getdashCountData = () => {

@@ -3,9 +3,12 @@ const express = require('express')
 const application = express();
 application.use(express.json());
 const cors = require('cors');
-application.use(cors({
- origin: "http://localhost:3000"
-}))
+const corsOptions = {
+ origin: '*',
+ credentials: true,
+ optionSuccessStatus: 200
+}
+application.use(cors(corsOptions))
 //Database-connection
 require('./databaseConnect.js')
 
@@ -16,7 +19,6 @@ application.use('/Credential', credentialRoutes)
 //2. Project router
 const projectRoutes = require('./ROUTER/projectRouter.js')
 application.use('/Project', projectRoutes)
-
 
 //Starting-up server
 const serverPort = 8000;
