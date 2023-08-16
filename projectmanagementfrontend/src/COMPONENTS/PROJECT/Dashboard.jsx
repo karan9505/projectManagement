@@ -7,7 +7,7 @@ export default function Dashboard() {
 
   const [dashBoardData, setDashBoardData] = useState({});
 
-  const dashboardDataApi = 'http://localhost:8000/Project/DashboardData'
+  const dashboardDataApi = 'https://my-project-management.onrender.com/Project/DashboardData'
   const userId = JSON.parse(localStorage.getItem('userId'));
   
   const getDashboardData = () => {
