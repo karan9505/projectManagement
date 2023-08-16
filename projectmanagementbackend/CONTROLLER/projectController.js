@@ -56,106 +56,23 @@ const updateProject = async (req, res) => {
   }
 }
 
-const dashBoardData = async (req, res) => {
-  console.log('--------------DASHBOARD-DATA API ACCESSED--------------');
+const dashBoardCounterData = async (req, res) => {
+  console.log('--------------DASHBOARD-COUNTER API ACCESSED--------------');
   try {
-    let totalProjects = 0;
-    let closedProjects = 0;
-    let runningProjects = 0;
-    let closureDay = 0;
-    let cancelledProjects = 0;
-    let chartData = [];
-    let STR = {
-      name: 'STR',
-      Total: 0,
-      Closed: 0
-    }
-    let FIN = {
-      name: 'FIN',
-      Total: 0,
-      Closed: 0
-    }
-    let QLT = {
-      name: 'QLT',
-      Total: 0,
-      Closed: 0
-    }
-    let MAN = {
-      name: 'MAN',
-      Total: 0,
-      Closed: 0
-    }
-    let STO = {
-      name: 'STO',
-      Total: 0,
-      Closed: 0
-    }
-    let HR = {
-      name: 'HR',
-      Total: 0,
-      Closed: 0
-    }
-    const dashBoardData = await project.find({ userId: req.body.userId });
-    totalProjects = dashBoardData.length;
-    dashBoardData.map((data) => {
-      if (data.status === 'Running')
-        runningProjects++;
-      else if (data.status === 'Closed')
-        closedProjects++;
-      else if (data.status === 'Cancelled')
-        cancelledProjects++;
+    let totalProjects = await project.find({ userId: req.body.userId }).count();
+    let closedProjects = await project.find({ userId: req.body.userId,status:'Closed' }).count();
+    let runningProjects = await project.find({ userId: req.body.userId, status: 'Running' }).count();
+    let cancelledProjects = await project.find({ userId: req.body.userId, status: 'Cancelled' }).count();
 
+    let closureDay = 0;
+
+    const dashBoardData = await project.find({ userId: req.body.userId });
+    dashBoardData.map((data) => {
       let currentTime = new Date().getTime();
       let endTime = new Date(data.endDate).getTime();
       if (endTime - currentTime <= 172800000)
         closureDay++;
-
-      if (data.department === 'Strategy') {
-        STR.Total++
-        if (data.status === 'Closed')
-          STR.Closed++;
-      }
-
-      else if (data.department === 'Finance') {
-        FIN.Total++
-        if (data.status === 'Closed')
-          FIN.Closed++;
-      }
-
-      else if (data.department === 'Quality') {
-        QLT.Total++
-        if (data.status === 'Closed')
-          QLT.Closed++;
-      }
-
-      else if (data.department === 'Maintenance') {
-        MAN.Total++
-        if (data.status === 'Closed')
-          MAN.Closed++;
-      }
-
-      else if (data.department === 'Stores') {
-        STO.Total++
-        if (data.status === 'Closed')
-          STO.Closed++;
-      }
-
-      else if (data.department === 'HR') {
-        HR.Total++
-        if (data.status === 'Closed')
-          HR.Closed++;
-      }
     })
-
-    chartData = [STR, FIN, QLT, MAN, STO, HR];
-
-    chartData.map((data) => {
-      if (data.Total !== 0) {
-        let per = (data.Closed / data.Total).toPrecision(2) * 100;
-        data.name = data.name + " - " + per + '%';
-      }
-    })
-
     res.send({
       success: true,
       totalProjects: totalProjects,
@@ -163,9 +80,59 @@ const dashBoardData = async (req, res) => {
       runningProjects: runningProjects,
       closureDay: closureDay,
       cancelledProjects: cancelledProjects,
-      chartData: chartData
     })
     res.end()
+  } catch (error) {
+    console.log(error)
+    res.send({
+      success: false,
+      message: 'Server Error'
+    })
+    res.end();
+  }
+}
+
+const dashBoardChartsData = async (req, res) => {
+  try {
+    console.log('--------------DASHBOARD-CAHRT API ACCESSED--------------');
+    const chartData = [
+      {
+        name: 'STR',  
+        Total: await project.find({userId:req.body.userId,department:'Strategy'}).count(),
+        Closed: await project.find({ userId: req.body.userId, department: 'Strategy', status: 'Closed' }).count()
+      },
+      {
+        name: 'FIN',
+        Total: await project.find({ userId: req.body.userId, department: 'Finance' }).count(),
+        Closed: await project.find({ userId: req.body.userId, department: 'Finance', status: 'Closed' }).count()
+      },
+      {
+        name: 'QLT',
+        Total: await project.find({ userId: req.body.userId, department: 'Quality' }).count(),
+        Closed: await project.find({ userId: req.body.userId, department: 'Quality', status: 'Closed' }).count()
+      },
+      {
+        name: 'MAN',
+        Total: await project.find({ userId: req.body.userId, department: 'Maintenance' }).count(),
+        Closed: await project.find({ userId: req.body.userId, department: 'Maintenance', status: 'Closed' }).count()
+      },
+      {
+        name: 'STO',
+        Total: await project.find({ userId: req.body.userId, department: 'Stores' }).count(),
+        Closed: await project.find({ userId: req.body.userId, department: 'Stores', status: 'Closed' }).count()
+      },
+      {
+        name: 'HR',
+        Total: await project.find({ userId: req.body.userId, department: 'HR' }).count(),
+        Closed: await project.find({ userId: req.body.userId, department: 'HR', status: 'Closed' }).count()
+      }
+    ]
+    res.send({
+      success: true,
+      chartData:chartData
+    })
+    res.end();
+
   } catch (error) {
     console.log(error)
     res.send({
@@ -238,7 +205,8 @@ module.exports = {
   newProject: newProject,
   allProjects: allProjects,
   updateProject: updateProject,
-  dashBoardData: dashBoardData,
+  dashBoardCounterData: dashBoardCounterData,
   searchProject: searchProject,
-  getSortedProjects: getSortedProjects
+  getSortedProjects: getSortedProjects,
+  dashBoardChartsData: dashBoardChartsData
 }
