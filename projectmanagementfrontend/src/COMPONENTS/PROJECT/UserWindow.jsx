@@ -7,8 +7,8 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 export default function UserWindow() {
 
-  const [tabStatus, setTabStatus] = useState('listingProjects');
-  const [dasboardView, setDashBoard] = useState(false);
+  const [tabStatus, setTabStatus] = useState('');
+  const [dasboardView, setDashBoard] = useState(true);
   const logoutApi = 'http://localhost:8000/Credential/Logout/';
   const Navigate = useNavigate();
   const logoutUser = (e) => {

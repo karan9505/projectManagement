@@ -235,4 +235,16 @@
     color: rgba(0, 0, 0, 1);
     font-weight: bold;
   }
+  .falseTheme{
+    position: absolute;
+    left: 27px;
+    top:180px;
+    color: red;
+  }
+  .falseDate{
+    position: absolute;
+      left: px;
+      top: 60px;
+      color: red;
+  }
 }
