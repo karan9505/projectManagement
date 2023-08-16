@@ -9,7 +9,6 @@ application.use(cors({
 //Database-connection
 require('./databaseConnect.js')
 
-
 //Importing routers
 //1. Credential router
 const credentialRoutes = require('./ROUTER/credentialRouter.js');
