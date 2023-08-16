@@ -10,6 +10,15 @@
   align-items: center;
   justify-content: space-between;
  }
+ #hidepassword{
+  position: absolute;
+  top:38px;
+  right: 13px;
+  height: 15px;
+ }
+ #hidepassword:hover{
+  cursor: pointer;
+ }
  #landingMainHead {
    position: absolute;
    left: 0px;
@@ -339,12 +348,25 @@
  }
  #negetiveResponse {
    position: absolute;
-   bottom: 105px;
+   top: 25px;
    color: red;
+   width: 80%;
+   left: 10%;
+   text-align: center;
  }
  #landingMainHead{
   position: absolute;
   left: 0px;
   height: 320px;
+ }
+ #hidepassword {
+   position: absolute;
+   top: 57%;
+   right: 13px;
+   height: 26%;
+ }
+
+ #hidepassword:hover {
+   cursor: pointer;
  }
 }

@@ -98,6 +98,15 @@ export default function Login(props) {
     setPassReq('');
   }
 
+  const unhidePassword = (e) => {
+    e.preventDefault();
+    if (e.target.parentElement.children[1].type === 'password') {
+      e.target.parentElement.children[1].type = 'text';
+      return;
+    }
+    e.target.parentElement.children[1].type = 'password';
+  }
+
   return (
     <>
       <p id='LoginHeading'>Login to get started</p>
@@ -108,7 +117,8 @@ export default function Login(props) {
       </div>
       <div id='loginPassDiv'>
         <label htmlFor='loginPassword' className='inputLabel' id='loginPassLabel'>Password</label>
-        <input type='text' placeholder='Password...' className='inputField' onChange={(e) => { dispatch(setUserPass(e.target.value)) }} value={userPassword} id='loginPassValue' onClick={(e) => { resetBlank(e) }}></input>
+        <input type='password' placeholder='Password...' className='inputField' onChange={(e) => { dispatch(setUserPass(e.target.value)) }} value={userPassword} id='loginPassValue' onClick={(e) => { resetBlank(e) }}></input>
+        <img src='../IMAGES/hide-password.svg' alt='Not' id='hidepassword' onClick={(e) => { unhidePassword(e) }}></img>
         <p className='loginFalse'>{passRequired}</p>
         <p id='forgotPassText'>Forgot Password?</p>
       </div>

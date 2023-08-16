@@ -113,7 +113,7 @@ export default function ListingPage() {
       <input type='text' id='searchText' placeholder='Search' spellCheck='false' onChange={(e)=>{getSearchedProjects(e)}}></input>
       <div id='sortingDiv'>
         <label htmlFor='sortingOption'>Sort by : </label>
-        <select id='sortingOption' onClick={(e) => { setSortedData(e)}}>
+        <select id='sortingOption' onChange={(e) => { setSortedData(e)}}>
           <option value={'priority'}>Priority</option>
           <option value={'category'}>Category</option>
           <option value={'reason'}>Reason</option>

@@ -76,7 +76,6 @@ const Login = async (req, res) => {
 const Logout = async (req, res) => {
  console.log('--------------LOGOUT API ACCESSED--------------');
  try {
-  console.log(req.body.userId)
   const dbResponse = await credentials.updateOne({ _id: req.body.userId }, { loginStatus: 0 })
   if (dbResponse.modifiedCount) {
    res.send({
