@@ -60,7 +60,7 @@ const dashBoardCounterData = async (req, res) => {
   console.log('--------------DASHBOARD-COUNTER API ACCESSED--------------');
   try {
     let totalProjects = await project.find({ userId: req.body.userId }).count();
-    let closedProjects = await project.find({ userId: req.body.userId,status:'Closed' }).count();
+    let closedProjects = await project.find({ userId: req.body.userId, status: 'Closed' }).count();
     let runningProjects = await project.find({ userId: req.body.userId, status: 'Running' }).count();
     let cancelledProjects = await project.find({ userId: req.body.userId, status: 'Cancelled' }).count();
 
@@ -97,8 +97,8 @@ const dashBoardChartsData = async (req, res) => {
     console.log('--------------DASHBOARD-CAHRT API ACCESSED--------------');
     const chartData = [
       {
-        name: 'STR',  
-        Total: await project.find({userId:req.body.userId,department:'Strategy'}).count(),
+        name: 'STR',
+        Total: await project.find({ userId: req.body.userId, department: 'Strategy' }).count(),
         Closed: await project.find({ userId: req.body.userId, department: 'Strategy', status: 'Closed' }).count()
       },
       {
@@ -129,7 +129,7 @@ const dashBoardChartsData = async (req, res) => {
     ]
     res.send({
       success: true,
-      chartData:chartData
+      chartData: chartData
     })
     res.end();
 
@@ -149,11 +149,16 @@ const searchProject = async (req, res) => {
     const searchedProjects = await project.find({
       userId: req.body.userId,
       "$or": [
-        {
-          "theme": { $regex: req.body.key, $options:'i'}
-        }
+        { "theme": { $regex: req.body.key, $options: 'i' } },
+        { "reason": { $regex: req.body.key, $options: 'i' } },
+        { "type": { $regex: req.body.key, $options: 'i' } },
+        { "division": { $regex: req.body.key, $options: 'i' } },
+        { "category": { $regex: req.body.key, $options: 'i' } },
+        { "department": { $regex: req.body.key, $options: 'i' } },
+        { "location": { $regex: req.body.key, $options: 'i' } },
+        { "status": { $regex: req.body.key, $options: 'i' } },
       ]
-    }).collation({locale:"en",strength:2})
+    }).collation({ locale: "en", strength: 2 })
     res.send({
       success: true,
       searchedProjects: searchedProjects
@@ -174,7 +179,7 @@ const getSortedProjects = async (req, res) => {
   try {
     let property = req.body.property;
     let sortedProjects;
-    if (property ==='priority')
+    if (property === 'priority')
       sortedProjects = await project.find({ userId: req.body.userId }).sort({ 'priority': 1 })
     else if (property === 'category')
       sortedProjects = await project.find({ userId: req.body.userId }).sort({ 'category': 1 })
